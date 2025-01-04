@@ -24,11 +24,13 @@ const Calendar = ({ isHorizontal, highlights }: CalendarProps) => {
 
   // Check if a day should be highlighted
   const isHighlighted = (day: number, monthIndex: number): boolean => {
-    return highlights.some(({ start, end }) => {
-      const startDate = parseDate(start);
-      const endDate = parseDate(end);
+    return highlights.some((highlight) => {
+      const startDate = parseDate(highlight.start);
+      const endDate = parseDate(highlight.end);
 
-      if (monthIndex < startDate.month || monthIndex > endDate.month) return false;
+      if (monthIndex < startDate.month || monthIndex > endDate.month) {
+        return false;
+      }
 
       const startDay = monthIndex === startDate.month ? startDate.day : 1;
       const endDay = monthIndex === endDate.month ? endDate.day : MONTHS[monthIndex].days;
@@ -39,11 +41,11 @@ const Calendar = ({ isHorizontal, highlights }: CalendarProps) => {
 
   return (
     <div className={`calendar ${isHorizontal ? "horizontal" : "vertical"}`}>
-      {MONTHS.map(({ name, days }: Month, monthIndex: number) => (
-        <div key={name} className="month-container">
-          <div className="month">{name}</div>
-          <div className={`days ${name}`}>
-            {[...Array(days)].map((_, i) => {
+      {MONTHS.map((month: Month, monthIndex: number) => (
+        <div key={month.name} className="month-container">
+          <div className="month">{month.name}</div>
+          <div className={`days ${month.name}`}>
+            {[...Array(month.days)].map((_, i) => {
               const day = i + 1;
               return (
                 <div key={day} className={`day ${isHighlighted(day, monthIndex) ? "highlighted" : ""}`}>
