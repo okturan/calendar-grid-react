@@ -10,50 +10,29 @@ interface UsagePeriod {
   share: number; // 1-6 representing which unit share this usage period belongs to
 }
 
-export const periods = {
-  share1: [
-    ["15.05", "04.06"],
-    ["18.09", "02.10"],
-    ["21.12", "04.01"],
-  ],
-  share2: [
-    ["05.06", "25.06"],
-    ["03.10", "17.10"],
-    ["06.01", "20.01"],
-  ],
-  share3: [
-    ["26.06", "16.07"],
-    ["18.10", "01.11"],
-    ["22.01", "05.02"],
-  ],
-  share4: [
-    ["17.07", "06.08"],
-    ["31.03", "14.04"],
-    ["03.11", "17.11"],
-  ],
-  share5: [
-    ["15.04", "29.04"],
-    ["07.08", "27.08"],
-    ["19.11", "03.12"],
-  ],
-  share6: [
-    ["28.08", "17.09"],
-    ["30.04", "14.05"],
-    ["05.12", "19.12"],
-  ],
-};
+export const usagePeriods: UsagePeriod[] = [
+  { start: "15.05", end: "04.06", share: 1 },
+  { start: "18.09", end: "02.10", share: 1 },
+  { start: "21.12", end: "04.01", share: 1 },
+  { start: "05.06", end: "25.06", share: 2 },
+  { start: "03.10", end: "17.10", share: 2 },
+  { start: "06.01", end: "20.01", share: 2 },
+  { start: "26.06", end: "16.07", share: 3 },
+  { start: "18.10", end: "01.11", share: 3 },
+  { start: "22.01", end: "05.02", share: 3 },
+  { start: "17.07", end: "06.08", share: 4 },
+  { start: "31.03", end: "14.04", share: 4 },
+  { start: "03.11", end: "17.11", share: 4 },
+  { start: "15.04", end: "29.04", share: 5 },
+  { start: "07.08", end: "27.08", share: 5 },
+  { start: "19.11", end: "03.12", share: 5 },
+  { start: "28.08", end: "17.09", share: 6 },
+  { start: "30.04", end: "14.05", share: 6 },
+  { start: "05.12", end: "19.12", share: 6 }
+];
 
 function App() {
   const [isHorizontal, setIsHorizontal] = useState<boolean>(false);
-
-  // Convert periods data to usage periods array
-  const usagePeriods: UsagePeriod[] = Object.entries(periods).flatMap(([share, dateRanges]) =>
-    dateRanges.map(([start, end]) => ({
-      start,
-      end,
-      share: parseInt(share.replace("share", "")),
-    })),
-  );
 
   return (
     <div>
