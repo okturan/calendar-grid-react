@@ -1,0 +1,116 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary-color: #3b82f6;
+  --primary-light: #60a5fa;
+  --highlight-color: #fbbf24;
+  --highlight-hover: #f59e0b;
+  --bg-color: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #1e293b;
+  --text-secondary: #64748b;
+  --border-color: #e2e8f0;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  padding: 20px;
+  background-color: var(--bg-color);
+}
+
+.controls {
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.calendar {
+  display: grid;
+  gap: 10px;
+  margin: 0 auto;
+  transition: all 0.3s ease;
+}
+
+.calendar.vertical {
+  grid-template-rows: repeat(12, 1fr);
+}
+
+.calendar.horizontal {
+  grid-template-columns: repeat(12, 1fr);
+}
+
+.month-container {
+  display: flex;
+  transition: flex-direction 0.3s ease;
+}
+
+.vertical .month-container {
+  flex-direction: row;
+}
+
+.horizontal .month-container {
+  flex-direction: column;
+}
+
+.month {
+  background-color: var(--primary-color);
+  color: white;
+  padding: 10px;
+  text-align: center;
+  font-weight: bold;
+  margin-bottom: 0;
+  transition: all 0.3s ease;
+}
+
+.horizontal .month {
+  margin-bottom: unset;
+  margin-right: -1px;
+}
+
+.days {
+  display: grid;
+  gap: 2px;
+  padding: 5px;
+  background-color: var(--card-bg);
+  border-radius: 0 0 5px 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: -1px;
+  transition: all 0.3s ease;
+}
+
+.vertical .days {
+  grid-auto-flow: column;
+  grid-auto-columns: 1.5rem;
+}
+
+.horizontal .days {
+  grid-auto-flow: row;
+  grid-auto-rows: 1.5rem;
+}
+
+.day {
+  height: 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--bg-color);
+  border-radius: 3px;
+  font-size: 0.8em;
+  color: var(--text-primary);
+  transition: background-color 0.2s;
+}
+
+.day:hover {
+  background-color: var(--border-color);
+  cursor: pointer;
+}
+
+.day.highlighted {
+  background-color: var(--highlight-color);
+  color: var(--text-primary);
+  font-weight: bold;
+}
