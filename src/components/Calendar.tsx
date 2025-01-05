@@ -1,43 +1,41 @@
 import MONTHS, { type Month } from "./Months";
 
-interface UsagePeriod {
-  start: string; // format: "DD.MM"
-  end: string; // format: "DD.MM"
-  share: number; // 1-6 representing which unit share this usage period belongs to
-}
+import { ShareUnit, DateString } from "../App";
 
 interface CalendarProps {
   isHorizontal: boolean;
-  usagePeriods: UsagePeriod[];
+  shares: ShareUnit;
 }
 
-interface ParsedDate {
+interface CalendarDate {
   day: number;
   month: number;
 }
 
-const Calendar = ({ isHorizontal, usagePeriods }: CalendarProps) => {
+const Calendar = ({ isHorizontal, shares }: CalendarProps) => {
   // Parse date string "DD.MM" to {day, month} object
-  const parseDate = (dateStr: string): ParsedDate => {
+  const parseDate = (dateStr: DateString): CalendarDate => {
     const [day, month] = dateStr.split(".").map(Number);
     return { day, month: month - 1 }; // Convert to 0-based month index
   };
 
-  // Check if a day belongs to a usage period and return the unit share number if it does
-  const getUsagePeriod = (day: number, monthIndex: number): number | null => {
-    for (const period of usagePeriods) {
-      const startDate = parseDate(period.start);
-      const endDate = parseDate(period.end);
+  // Check if a day belongs to a usage period and return the share ID if it does
+  const getUsagePeriod = (day: number, monthIndex: number): string | null => {
+    for (const [shareId, periods] of Object.entries(shares)) {
+      for (const [start, end] of periods) {
+        const startDate = parseDate(start);
+        const endDate = parseDate(end);
 
-      if (monthIndex < startDate.month || monthIndex > endDate.month) {
-        continue;
-      }
+        if (monthIndex < startDate.month || monthIndex > endDate.month) {
+          continue;
+        }
 
-      const startDay = monthIndex === startDate.month ? startDate.day : 1;
-      const endDay = monthIndex === endDate.month ? endDate.day : MONTHS[monthIndex].days;
+        const startDay = monthIndex === startDate.month ? startDate.day : 1;
+        const endDay = monthIndex === endDate.month ? endDate.day : MONTHS[monthIndex].days;
 
-      if (day >= startDay && day <= endDay) {
-        return period.share;
+        if (day >= startDay && day <= endDay) {
+          return shareId;
+        }
       }
     }
     return null;
@@ -51,9 +49,9 @@ const Calendar = ({ isHorizontal, usagePeriods }: CalendarProps) => {
           <div className={`days ${month.name}`}>
             {[...Array(month.days)].map((_, i) => {
               const day = i + 1;
-              const unitShare = getUsagePeriod(day, monthIndex);
+              const shareId = getUsagePeriod(day, monthIndex);
               return (
-                <div key={day} className={`day ${unitShare ? `highlighted share${unitShare}` : ""}`}>
+                <div key={day} className={`day ${shareId ? `${shareId}` : "maintenance-pattern"}`}>
                   {day}
                 </div>
               );

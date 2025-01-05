@@ -4,18 +4,18 @@ interface Month {
 }
 
 const MONTHS: Month[] = [
-  { name: "January", days: 31 },
-  { name: "February", days: 28 }, // No leap-year handling
-  { name: "March", days: 31 },
-  { name: "April", days: 30 },
+  { name: "Jan", days: 31 },
+  { name: "Feb", days: 28 }, // No leap-year handling
+  { name: "Mar", days: 31 },
+  { name: "Apr", days: 30 },
   { name: "May", days: 31 },
-  { name: "June", days: 30 },
-  { name: "July", days: 31 },
-  { name: "August", days: 31 },
-  { name: "September", days: 30 },
-  { name: "October", days: 31 },
-  { name: "November", days: 30 },
-  { name: "December", days: 31 },
+  { name: "Jun", days: 30 },
+  { name: "Jul", days: 31 },
+  { name: "Aug", days: 31 },
+  { name: "Sep", days: 30 },
+  { name: "Oct", days: 31 },
+  { name: "Nov", days: 30 },
+  { name: "Dec", days: 31 },
 ];
 
 export type { Month };
