@@ -41,12 +41,12 @@ body {
   transition: all 0.3s ease;
 }
 
-.calendar.vertical {
+.calendar.horizontal {
   grid-template-rows: repeat(12, 1fr);
   height: 100%;
 }
 
-.calendar.horizontal {
+.calendar.vertical {
   grid-template-columns: repeat(12, 1fr);
   max-width: 1024px;
 }
@@ -56,11 +56,11 @@ body {
   transition: flex-direction 0.3s ease;
 }
 
-.vertical .month-container {
+.horizontal .month-container {
   flex-direction: row;
 }
 
-.horizontal .month-container {
+.vertical .month-container {
   flex-direction: column;
 }
 
@@ -80,11 +80,11 @@ body {
   transition: all 0.3s ease;
 }
 
-.vertical .days {
+.horizontal .days {
   grid-auto-flow: column;
 }
 
-.horizontal .days {
+.vertical .days {
   grid-auto-flow: row;
 }
 

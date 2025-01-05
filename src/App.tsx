@@ -53,7 +53,7 @@ function App() {
         <ToggleSwitch
           isChecked={isHorizontal}
           onChange={() => setIsHorizontal(!isHorizontal)}
-          labelText={isHorizontal ? "Vertical Layout" : "Horizontal Layout"}
+          labelText={isHorizontal ? "Horizontal Layout" : "Vertical Layout"}
         />
       </div>
       <Calendar isHorizontal={isHorizontal} shares={shares} />
