@@ -50,6 +50,18 @@ function App() {
   return (
     <>
       <div className="controls">
+        <div className="legend">
+          {Object.keys(shares).map((shareId) => (
+            <div key={shareId} className="legend-item">
+              <div className={`legend-color ${shareId}`}></div>
+              <span>{shareId}</span>
+            </div>
+          ))}
+          <div className="legend-item">
+            <div className="legend-color maintenance"></div>
+            <span>Maintenance</span>
+          </div>
+        </div>
         <ToggleSwitch
           isChecked={isHorizontal}
           onChange={() => setIsHorizontal(!isHorizontal)}

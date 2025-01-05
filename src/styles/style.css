@@ -22,6 +22,7 @@ body {
   --text-primary: #1e293b;
   --text-secondary: #64748b;
   --border-color: #e2e8f0;
+  --maintenance-pattern: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 4px, #e8e8e8 4px, #e8e8e8 8px);
 }
 
 body {
@@ -35,12 +36,46 @@ body {
   padding: 20px;
   display: flex;
   flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 .controls {
+  width: 70%;
   margin-bottom: 20px;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.legend {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9em;
+  color: var(--text-secondary);
+}
+
+.legend-color {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 3px;
+}
+
+.legend-color.share1 { background-color: var(--highlight-color1); }
+.legend-color.share2 { background-color: var(--highlight-color2); }
+.legend-color.share3 { background-color: var(--highlight-color3); }
+.legend-color.share4 { background-color: var(--highlight-color4); }
+.legend-color.share5 { background-color: var(--highlight-color5); }
+.legend-color.share6 { background-color: var(--highlight-color6); }
+.legend-color.maintenance {
+  background: var(--maintenance-pattern);
 }
 
 .calendar {
@@ -149,7 +184,7 @@ body {
 }
 
 .day.maintenance-pattern {
-  background: repeating-linear-gradient(45deg, #f0f0f0, #f0f0f0 4px, #e8e8e8 4px, #e8e8e8 8px);
+  background: var(--maintenance-pattern);
   background-attachment: fixed;
   background-position: 0 0;
 }
