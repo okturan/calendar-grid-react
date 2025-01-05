@@ -4,9 +4,13 @@
   box-sizing: border-box;
 }
 
+html,
+body {
+  height: 100%;
+}
+
 :root {
   --primary-color: #3b82f6;
-  --primary-light: #60a5fa;
   --highlight-color1: #66c2a5;
   --highlight-color2: #fc8d62;
   --highlight-color3: #8da0cb;
@@ -22,9 +26,15 @@
 
 body {
   font-family: Arial, sans-serif;
-  padding: 20px;
   background-color: var(--bg-color);
   height: 100%;
+}
+
+#root {
+  height: 100%;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
 }
 
 .controls {
@@ -39,20 +49,21 @@ body {
   margin: 0 auto;
   justify-content: center;
   transition: all 0.3s ease;
+  height: 100%;
 }
 
 .calendar.horizontal {
   grid-template-rows: repeat(12, 1fr);
-  height: 100%;
+  max-height: 36rem;
 }
 
 .calendar.vertical {
   grid-template-columns: repeat(12, 1fr);
-  max-width: 1024px;
 }
 
 .month-container {
   display: flex;
+  gap: 2px;
   transition: flex-direction 0.3s ease;
 }
 
@@ -62,12 +73,17 @@ body {
 
 .vertical .month-container {
   flex-direction: column;
+  height: 100%;
 }
 
 .month {
-  justify-items: center;
-  background-color: var(--primary-color);
-  color: white;
+  display: flex;
+  min-width: 4rem;
+  justify-content: center;
+  padding-inline: 0.5rem;
+  padding-block: 0.25rem;
+  align-items: center;
+  color: var(--text-secondary);
   text-align: center;
   font-weight: bold;
   transition: all 0.3s ease;
@@ -82,17 +98,20 @@ body {
 
 .horizontal .days {
   grid-auto-flow: column;
+  grid-auto-columns: 2rem;
 }
 
 .vertical .days {
   grid-auto-flow: row;
+  grid-template-rows: repeat(31, 1fr);
+  flex: 1;
+  min-height: 0;
 }
 
 .day {
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 100%;
   height: 100%;
   background-color: var(--bg-color);
   font-size: 0.8em;

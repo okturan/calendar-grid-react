@@ -45,4 +45,6 @@
     margin-left: 10px;
     font-size: 14px;
     color: var(--text-primary);
+    min-width: 120px;
+    display: inline-block;
 }
