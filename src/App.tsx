@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ToggleSwitch from "./components/ToggleSwitch";
+import OrientationSwitch from "./components/OrientationSwitch";
 import Calendar from "./components/Calendar";
 import Legend from "./components/Legend";
 import { shares } from "./data/shares";
@@ -36,10 +36,9 @@ function App() {
     <>
       <div className="controls">
         <Legend shares={shares} selectedShares={selectedShares} onToggleShare={toggleShare} />
-        <ToggleSwitch
-          isChecked={isHorizontal}
+        <OrientationSwitch
+          isHorizontal={isHorizontal}
           onChange={() => setIsHorizontal(!isHorizontal)}
-          labelText={isHorizontal ? "Horizontal Layout" : "Vertical Layout"}
         />
       </div>
       <Calendar isHorizontal={isHorizontal} shares={shares} selectedShares={selectedShares} />
