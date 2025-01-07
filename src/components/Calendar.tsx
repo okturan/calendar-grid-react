@@ -1,5 +1,4 @@
 import MONTHS, { type Month } from "./Months";
-
 import { ShareUnit, DateString } from "../App";
 
 interface CalendarProps {
@@ -7,20 +6,20 @@ interface CalendarProps {
   shares: ShareUnit;
   selectedShares: Set<string>;
 }
-
 interface CalendarDate {
   day: number;
   month: number;
 }
 
 const Calendar = ({ isHorizontal, shares, selectedShares }: CalendarProps) => {
-  // Parse date string "DD.MM" to {day, month} object
+  // Converts a date string like "DD.MM" into a CalendarDate object
   const parseDate = (dateStr: DateString): CalendarDate => {
     const [day, month] = dateStr.split(".").map(Number);
     return { day, month: month - 1 }; // Convert to 0-based month index
   };
 
-  // Check if a day belongs to a usage period and return the share ID if it does
+  // Checks if a given day/month belongs to any share's usage period
+  // Returns the shareId if found, null otherwise
   const getUsagePeriod = (day: number, monthIndex: number): string | null => {
     for (const [shareId, periods] of Object.entries(shares)) {
       for (const [start, end] of periods) {
@@ -42,6 +41,8 @@ const Calendar = ({ isHorizontal, shares, selectedShares }: CalendarProps) => {
     return null;
   };
 
+  // Render the calendar grid with all months and their days
+  // Apply appropriate styling based on usage periods and selections
   return (
     <div className={`calendar ${isHorizontal ? "horizontal" : "vertical"}`}>
       {MONTHS.map((month: Month, monthIndex: number) => (
@@ -51,14 +52,9 @@ const Calendar = ({ isHorizontal, shares, selectedShares }: CalendarProps) => {
             {[...Array(month.days)].map((_, i) => {
               const day = i + 1;
               const shareId = getUsagePeriod(day, monthIndex);
-              const opacity = shareId && selectedShares.size > 0
-                ? selectedShares.has(shareId) ? '' : 'dimmed'
-                : '';
+              const opacity = shareId && selectedShares.size > 0 ? (selectedShares.has(shareId) ? "" : "dimmed") : "";
               return (
-                <div
-                  key={day}
-                  className={`day ${shareId ? `${shareId}` : "maintenance-pattern"} ${opacity}`}
-                >
+                <div key={day} className={`day ${shareId ? `${shareId}` : "maintenance-pattern"} ${opacity}`}>
                   {day}
                 </div>
               );
