@@ -84,12 +84,24 @@ body {
   border-radius: 3px;
 }
 
-.legend-color.share1 { background-color: var(--highlight-color1); }
-.legend-color.share2 { background-color: var(--highlight-color2); }
-.legend-color.share3 { background-color: var(--highlight-color3); }
-.legend-color.share4 { background-color: var(--highlight-color4); }
-.legend-color.share5 { background-color: var(--highlight-color5); }
-.legend-color.share6 { background-color: var(--highlight-color6); }
+.legend-color.share1 {
+  background-color: var(--highlight-color1);
+}
+.legend-color.share2 {
+  background-color: var(--highlight-color2);
+}
+.legend-color.share3 {
+  background-color: var(--highlight-color3);
+}
+.legend-color.share4 {
+  background-color: var(--highlight-color4);
+}
+.legend-color.share5 {
+  background-color: var(--highlight-color5);
+}
+.legend-color.share6 {
+  background-color: var(--highlight-color6);
+}
 .legend-color.maintenance {
   background: var(--maintenance-pattern);
 }

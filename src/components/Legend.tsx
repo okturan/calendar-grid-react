@@ -13,15 +13,7 @@ const Legend = ({ shares, selectedShares, onToggleShare }: LegendProps) => {
         <div
           key={shareId}
           className={`legend-item ${selectedShares.has(shareId) ? "selected" : ""}`}
-          onClick={() => onToggleShare(shareId)}
-          role="button"
-          tabIndex={0}
-          onKeyDown={(e) => {
-            if (e.key === "Enter" || e.key === " ") {
-              onToggleShare(shareId);
-              e.preventDefault();
-            }
-          }}>
+          onClick={() => onToggleShare(shareId)}>
           <div className={`legend-color ${shareId}`}></div>
           <span>{shareId}</span>
         </div>

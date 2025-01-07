@@ -22,13 +22,13 @@ const App = () => {
   // Toggles selection state of a share for highlighting
   const toggleShare = (shareId: string) => {
     setSelectedShares((prev) => {
-      const newSet = new Set(prev);
-      if (newSet.has(shareId)) {
-        newSet.delete(shareId);
+      const updatedShares = new Set(prev);
+      if (updatedShares.has(shareId)) {
+        updatedShares.delete(shareId);
       } else {
-        newSet.add(shareId);
+        updatedShares.add(shareId);
       }
-      return newSet;
+      return updatedShares;
     });
   };
 
@@ -41,6 +41,6 @@ const App = () => {
       <Calendar isHorizontal={isHorizontal} shares={shares} selectedShares={selectedShares} />
     </>
   );
-}
+};
 
 export default App;
