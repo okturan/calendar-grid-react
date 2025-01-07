@@ -5,6 +5,7 @@ import "./styles/style.css";
 import "./styles/slider.css";
 
 export type DateString = string; // Format: "DD.MM"
+export type SelectedShares = Set<string>;
 export type UsagePeriod = [DateString, DateString];
 
 export interface ShareUnit {
@@ -46,13 +47,38 @@ export const shares: ShareUnit = {
 
 function App() {
   const [isHorizontal, setIsHorizontal] = useState<boolean>(false);
+  const [selectedShares, setSelectedShares] = useState<SelectedShares>(new Set());
+
+  const toggleShare = (shareId: string) => {
+    setSelectedShares(prev => {
+      const newSet = new Set(prev);
+      if (newSet.has(shareId)) {
+        newSet.delete(shareId);
+      } else {
+        newSet.add(shareId);
+      }
+      return newSet;
+    });
+  };
 
   return (
     <>
       <div className="controls">
         <div className="legend">
           {Object.keys(shares).map((shareId) => (
-            <div key={shareId} className="legend-item">
+            <div
+              key={shareId}
+              className={`legend-item ${selectedShares.has(shareId) ? 'selected' : ''}`}
+              onClick={() => toggleShare(shareId)}
+              role="button"
+              tabIndex={0}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                  toggleShare(shareId);
+                  e.preventDefault();
+                }
+              }}
+            >
               <div className={`legend-color ${shareId}`}></div>
               <span>{shareId}</span>
             </div>
@@ -68,7 +94,11 @@ function App() {
           labelText={isHorizontal ? "Horizontal Layout" : "Vertical Layout"}
         />
       </div>
-      <Calendar isHorizontal={isHorizontal} shares={shares} />
+      <Calendar
+        isHorizontal={isHorizontal}
+        shares={shares}
+        selectedShares={selectedShares}
+      />
     </>
   );
 }

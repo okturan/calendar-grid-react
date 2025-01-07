@@ -5,6 +5,7 @@ import { ShareUnit, DateString } from "../App";
 interface CalendarProps {
   isHorizontal: boolean;
   shares: ShareUnit;
+  selectedShares: Set<string>;
 }
 
 interface CalendarDate {
@@ -12,7 +13,7 @@ interface CalendarDate {
   month: number;
 }
 
-const Calendar = ({ isHorizontal, shares }: CalendarProps) => {
+const Calendar = ({ isHorizontal, shares, selectedShares }: CalendarProps) => {
   // Parse date string "DD.MM" to {day, month} object
   const parseDate = (dateStr: DateString): CalendarDate => {
     const [day, month] = dateStr.split(".").map(Number);
@@ -50,8 +51,14 @@ const Calendar = ({ isHorizontal, shares }: CalendarProps) => {
             {[...Array(month.days)].map((_, i) => {
               const day = i + 1;
               const shareId = getUsagePeriod(day, monthIndex);
+              const opacity = shareId && selectedShares.size > 0
+                ? selectedShares.has(shareId) ? '' : 'dimmed'
+                : '';
               return (
-                <div key={day} className={`day ${shareId ? `${shareId}` : "maintenance-pattern"}`}>
+                <div
+                  key={day}
+                  className={`day ${shareId ? `${shareId}` : "maintenance-pattern"} ${opacity}`}
+                >
                   {day}
                 </div>
               );

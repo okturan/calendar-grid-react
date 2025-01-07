@@ -41,7 +41,7 @@ body {
 }
 
 .controls {
-  width: 70%;
+  width: 80%;
   margin-bottom: 20px;
   display: flex;
   justify-content: space-between;
@@ -60,6 +60,22 @@ body {
   gap: 0.5rem;
   font-size: 0.9em;
   color: var(--text-secondary);
+  cursor: pointer;
+  padding: 0.25rem 0.5rem;
+  border-radius: 4px;
+  transition: background-color 0.2s;
+}
+
+.legend-item:hover:not(:last-child) {
+  background-color: var(--border-color);
+}
+
+.legend-item.selected {
+  background-color: var(--border-color);
+}
+
+.legend-item:last-child {
+  cursor: default;
 }
 
 .legend-color {
@@ -187,4 +203,9 @@ body {
   background: var(--maintenance-pattern);
   background-attachment: fixed;
   background-position: 0 0;
+}
+
+.day.dimmed {
+  opacity: 0.3;
+  transition: opacity 0.2s ease;
 }
