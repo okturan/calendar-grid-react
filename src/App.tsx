@@ -15,7 +15,7 @@ export interface ShareUnit {
   [shareId: string]: UsagePeriod[];
 }
 
-function App() {
+const App = () => {
   const [isHorizontal, setIsHorizontal] = useState<boolean>(false);
   const [selectedShares, setSelectedShares] = useState<SelectedShares>(new Set());
 
@@ -36,10 +36,7 @@ function App() {
     <>
       <div className="controls">
         <Legend shares={shares} selectedShares={selectedShares} onToggleShare={toggleShare} />
-        <OrientationSwitch
-          isHorizontal={isHorizontal}
-          onChange={() => setIsHorizontal(!isHorizontal)}
-        />
+        <OrientationSwitch isHorizontal={isHorizontal} onChange={() => setIsHorizontal(!isHorizontal)} />
       </div>
       <Calendar isHorizontal={isHorizontal} shares={shares} selectedShares={selectedShares} />
     </>
