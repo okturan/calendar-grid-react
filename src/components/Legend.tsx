@@ -1,4 +1,4 @@
-import { ShareUnit, SelectedShares } from "../App";
+import type { SelectedShares, ShareUnit } from "../types";
 
 interface LegendProps {
   shares: ShareUnit;

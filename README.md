@@ -29,6 +29,8 @@ The application displays usage periods for 6 shares, with each share having 3 de
 }
 ```
 
+Period endpoints are inclusive. A period whose start is later in the calendar year than its end, such as `21.12`–`04.01`, is treated as wrapping across New Year.
+
 ### Interaction
 
 - Click on share labels in the legend to highlight specific share periods
@@ -45,5 +47,14 @@ This project is built with:
 To run the project locally:
 
 1. Clone the repository
-2. Install dependencies: `npm install`
+2. Install dependencies: `npm ci`
 3. Start development server: `npm run dev`
+
+Before opening a pull request, run the same behavior, lint, type, and production-build gates used by CI:
+
+```sh
+npm test
+npm run lint
+npm run typecheck
+npm run build
+```

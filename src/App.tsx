@@ -3,17 +3,9 @@ import OrientationSwitch from "./components/OrientationSwitch";
 import Calendar from "./components/Calendar";
 import Legend from "./components/Legend";
 import { shares } from "./data/shares";
+import type { SelectedShares } from "./types";
 import "./styles/style.css";
 import "./styles/slider.css";
-
-// Format: "DD.MM"
-export type DateString = string;
-export type SelectedShares = Set<string>;
-export type UsagePeriod = [DateString, DateString];
-
-export interface ShareUnit {
-  [shareId: string]: UsagePeriod[];
-}
 
 const App = () => {
   const [isHorizontal, setIsHorizontal] = useState<boolean>(false);
