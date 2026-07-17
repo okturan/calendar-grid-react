@@ -1,4 +1,4 @@
-import { ShareUnit } from "../App";
+import type { ShareUnit } from "../types";
 
 // Predefined usage periods for all shares (3 periods each)
 export const shares: ShareUnit = {
