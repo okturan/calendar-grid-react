@@ -55,6 +55,9 @@ body {
 }
 
 .legend-item {
+  border: 0;
+  background: transparent;
+  font: inherit;
   display: flex;
   align-items: center;
   gap: 0.5rem;
@@ -66,15 +69,20 @@ body {
   transition: background-color 0.2s;
 }
 
-.legend-item:hover:not(:last-child) {
+.legend-item:hover:not(.legend-maintenance) {
   background-color: var(--border-color);
+}
+
+.legend-item:focus-visible {
+  outline: 2px solid var(--primary-color);
+  outline-offset: 2px;
 }
 
 .legend-item.selected {
   background-color: var(--border-color);
 }
 
-.legend-item:last-child {
+.legend-maintenance {
   cursor: default;
 }
 
