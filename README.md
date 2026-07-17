@@ -2,6 +2,8 @@
 
 A React-based visualization tool for managing and displaying timeshare periods of a vacation property. The application provides an interactive calendar view that helps track and visualize usage periods for different shares throughout the year.
 
+**[Open the live calendar](https://okturan.github.io/calendar-grid-react/)**
+
 ![Horizontal timeshare calendar with share2 selected and the other allocation periods dimmed](docs/calendar-grid-product-proof.png)
 
 *Actual production build with the horizontal layout enabled and `share2` selected. The three orange allocation periods remain prominent while the other shares are dimmed.*
@@ -58,3 +60,5 @@ npm run lint
 npm run typecheck
 npm run build
 ```
+
+Every successful `master` CI run deploys that exact commit to GitHub Pages. The deployment rebuilds with the repository-specific asset base and publishes only the generated `dist/` directory.
